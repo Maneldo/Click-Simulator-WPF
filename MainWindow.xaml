@@ -5,8 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Click Simulator" Icon="https://imagepng.org/mouse-click/mouse-click/" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="20">
+            <TextBlock x:Name="textozin" Text="0" FontWeight="Bold" />
+        </Viewbox>
+
+        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+            Content="Clique"
+            Click="Click_vl" 
+            Width="200" Height="50" FontSize="20"/>
+
+        <!-- ================= UPGRADE 1 ================= -->
+        <TextBlock Grid.Row="2" Grid.Column="0" 
+               x:Name="Upgrade1"
+               Text="+1 Click"
+               FontSize="24"
+               HorizontalAlignment="Center" Margin="0,10"/>
+
+        <Button Grid.Row="3" Grid.Column="0"
+            Content="Comprar (100)"
+            x:Name="FirstUp"
+            Click="Click_Upgrade" 
+            Width="150" Height="40" Margin="0,0,0,20"/>
+
+        <!-- ================= UPGRADE 2 ================= -->
+        <TextBlock Grid.Row="2" Grid.Column="1" 
+               Text="+3 Clicks"
+               FontSize="24"
+               HorizontalAlignment="Center" Margin="0,10"/>
+
+        <Button Grid.Row="3" Grid.Column="1"
+            Content="Comprar (400)"
+            x:Name="SecondUp"
+            Click="Click_Upgrade" 
+            Width="150" Height="40" Margin="0,0,0,20"/>
+
+        <!-- ================= UPGRADE INFINITO ================= -->
+        <TextBlock Grid.Row="2" Grid.Column="2" 
+               x:Name="InfTexto"
+               Text="+2 Clicks (inf)"
+               FontSize="24"
+               HorizontalAlignment="Center" Margin="0,10"/>
+
+        <Button Grid.Row="3" Grid.Column="2"
+            Content="Comprar (500)"
+            x:Name="InfUp"
+            Click="Click_Upgrade" 
+            Width="150" Height="40" Margin="0,0,0,20"/>
     </Grid>
 </Window>
