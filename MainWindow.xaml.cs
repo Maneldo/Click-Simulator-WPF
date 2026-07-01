@@ -1,14 +1,5 @@
-﻿using System.Diagnostics.Tracing;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApp1
 {
@@ -17,14 +8,25 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        int saldo = 0;
-        int quant = 1000;
+        bool playing = true;
+        long saldo = 0;
+        long quant = 1;
         int precoInfinito = 500;
         int InfBonus = 2;
-        public void Saldo(int saldo1)
+        int rebirthPreco = 5000;
+        int multi = 1;
+
+        public void Saldo(long saldo1)
         {
-            saldo += saldo1;
-            textozin.Text = saldo.ToString();
+            if (saldo1 < 0)
+            {
+                saldo += saldo1;
+            }
+            else
+            {
+                saldo += (saldo1*multi);
+            }
+            textozin.Text = saldo.ToString("N0");
         }
 
         public MainWindow()
@@ -34,43 +36,70 @@ namespace WpfApp1
 
         public void Click_vl(object sender, RoutedEventArgs e)
         {
-            if (saldo >= 10_000_000){
-                textozin.Text = "GANHOU!";
-            }
-            else
+            if (!playing)
             {
-                Saldo(quant);
+                return;
             }
-            
+            Saldo(quant);
+            if (saldo >= 10_000_000_000)
+            {
+                textozin.Text = "10.000.000.000 (MAX)";
+                playing = false;
+            }
+
         }
         public void Click_Upgrade(object sender, RoutedEventArgs e)
         {
+            if (!playing)
+            {
+                return;
+            }
             Button Click_Button = (Button)sender;
             string txtbutton = Click_Button.Content.ToString();
-            string infbutton = Click_Button.Name.ToString();
+            string buttonName = Click_Button.Name.ToString();
 
-            if (saldo >= 100 && txtbutton == "Comprar (100)")
+            if (saldo >= 50 && txtbutton == "Comprar (50)")
             {
-                Saldo(-100);
+                Saldo(-50);
                 FirstUp.Content = "Comprado";
                 quant += 1;
 
             }
-            else if (saldo >= 400 && txtbutton == "Comprar (400)")
+            else if (saldo >= 300 && txtbutton == "Comprar (300)")
             {
-                Saldo(-400);
+                Saldo(-300);
                 SecondUp.Content = "Comprado";
                 quant += 3;
             }
-            else if (saldo >= precoInfinito && infbutton == "InfUp")
+            else if (saldo >= precoInfinito && buttonName == "InfUp")
             {
                 Saldo(-precoInfinito);
-                quant += InfBonus;
-                InfBonus+= 9;
+                quant += (multi*InfBonus);
+                InfBonus+= 6;
                 precoInfinito = (int)(precoInfinito * 1.5) + 20;
 
                 InfTexto.Text = $"+{InfBonus} Clicks (inf)";
-                Click_Button.Content = $"Comprar ({precoInfinito})";
+                Click_Button.Content = $"Comprar ({precoInfinito:N0})";
+            }
+            else if (saldo >= rebirthPreco && buttonName == "RebirthButton")
+            {
+                saldo = 0;
+                multi++;
+                rebirthPreco = (int)(rebirthPreco * 2.5);
+                quant = 1;
+                precoInfinito = 500;
+                InfBonus = 2;
+
+                textozin.Text = "0";
+                RebirthText.Text = $"Rebirth (Multi: {multi}x)";
+                Click_Button.Content = $"Resetar ({rebirthPreco:N0})"
+                InfTexto.Text = $"+{InfBonus} Clicks (inf)";
+                InfUp.Content = $"Comprar ({precoInfinito:N0})";
+
+                Upgrade1.Text = $"+{1*multi} Click";
+                Upgrade2.Text = $"+{3 * multi} Clicks";
+                FirstUp.Content = "Comprar (50)";
+                SecondUp.Content = "Comprar (300)";
             }
         }
     }
