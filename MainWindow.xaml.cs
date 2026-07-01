@@ -55,7 +55,7 @@ namespace WpfApp1
                 return;
             }
             Button Click_Button = (Button)sender;
-            string txtbutton = Click_Button.Content.ToString();
+            string txtbutton = Click_Button.Content?.ToString() ?? string.Empty;
             string buttonName = Click_Button.Name.ToString();
 
             if (saldo >= 50 && txtbutton == "Comprar (50)")
