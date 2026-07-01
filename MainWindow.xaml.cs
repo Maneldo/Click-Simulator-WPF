@@ -92,7 +92,7 @@ namespace WpfApp1
 
                 textozin.Text = "0";
                 RebirthText.Text = $"Rebirth (Multi: {multi}x)";
-                Click_Button.Content = $"Resetar ({rebirthPreco:N0})"
+                Click_Button.Content = $"Resetar ({rebirthPreco:N0})";
                 InfTexto.Text = $"+{InfBonus} Clicks (inf)";
                 InfUp.Content = $"Comprar ({precoInfinito:N0})";
 
