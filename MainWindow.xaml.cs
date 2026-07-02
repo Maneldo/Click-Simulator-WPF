@@ -74,11 +74,11 @@ namespace WpfApp1
             else if (saldo >= precoInfinito && buttonName == "InfUp")
             {
                 Saldo(-precoInfinito);
-                quant += (multi*InfBonus);
+                quant += InfBonus;
                 InfBonus+= 6;
                 precoInfinito = (int)(precoInfinito * 1.5) + 20;
 
-                InfTexto.Text = $"+{InfBonus} Clicks (inf)";
+                InfTexto.Text = $"+{InfBonus * multi} Clicks (inf)";
                 Click_Button.Content = $"Comprar ({precoInfinito:N0})";
             }
             else if (saldo >= rebirthPreco && buttonName == "RebirthButton")
@@ -98,9 +98,11 @@ namespace WpfApp1
 
                 Upgrade1.Text = $"+{1*multi} Click";
                 Upgrade2.Text = $"+{3 * multi} Clicks";
+                InfTexto.Text = $"+{InfBonus * multi} Clicks (inf)";
                 FirstUp.Content = "Comprar (50)";
                 SecondUp.Content = "Comprar (300)";
             }
+            ClickPS.Text = $"{quant * multi} Clicks";
         }
     }
 }
