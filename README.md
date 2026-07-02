@@ -8,4 +8,4 @@ Um jogo no estilo *Incremental/Clicker* desenvolvido em C# utilizando a tecnolog
 - **WPF (XAML)** para a interface gráfica
 
 ## 🖼️ Foto do Projeto
-<img width="877" height="428" alt="image" src="https://github.com/user-attachments/assets/fb0d5ccb-7e4c-439b-82bb-78fff2156908" />
+<img width="881" height="436" alt="image" src="https://github.com/user-attachments/assets/9a63f270-ced6-4fec-ab38-7894c03baf1b" />
